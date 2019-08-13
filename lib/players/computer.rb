@@ -1,9 +1,15 @@
  module Players
   class Computer < Player
     
+<<<<<<< HEAD
     attr_accessor :board, :current_player, :opponent
     
     VALID_MOVES = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
+=======
+    attr_accessor :board, :current_player
+    
+    @@valid_moves = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
+>>>>>>> 3176e2a8943160cae4894be92f179e5336015ca4
     
     WIN_COMBINATIONS = [
     [0,1,2],
@@ -15,6 +21,7 @@
     [0,4,8],
     [6,4,2]
     ]
+<<<<<<< HEAD
   
     def move(board) 
       move = strategy(board)
@@ -102,3 +109,36 @@
   
   end
 end
+=======
+    
+    def move(board)
+      move = winning_moves(board)
+      move.to_i + 1
+    end
+   
+    def opponent_token
+      @opponent = @first_player == "X" ? "X" : "O"
+    end
+    
+    def winning_moves(board)
+      a = Hash.new
+        WIN_COMBINATIONS.each_with_index do |combo, index|
+        
+        a[combo[0]] = board[combo[0]]
+        a[combo[1]] = board[combo[1]]
+        a[combo[2]] = board[combo[2]]
+
+          if a.has_value?(opponent_token)
+            a.delete_if { |key, value| value == opponent_token }
+            return a.keys.sample
+          else 
+            return a.clear
+          end
+        end
+      return a
+    end
+
+  end
+end
+
+>>>>>>> 3176e2a8943160cae4894be92f179e5336015ca4

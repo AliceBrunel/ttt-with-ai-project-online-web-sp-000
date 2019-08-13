@@ -62,3 +62,35 @@ def game_style
 end
 
 game_style
+
+puts "Choose your play mode:"
+puts "--------------------------------------------------------"
+puts " Play against someone else: type [1]"
+puts " Play against the computer: type [2]"
+puts " Watch the computer play against itself: type [3]"
+puts "--------------------------------------------------------"
+puts "Type your choice and press Enter"
+
+choice = gets.to_i 
+def game_style(choice)
+  if choice == 1
+    puts "One human against another one. The board is ready."
+    two_players = Game.new
+    two_players.play
+  elsif choice == 2
+    puts "One human against a computer. The board is ready."
+    one_player = Game.new(player_1 = Players::Human.new("X"), player_2 = Players::Computer.new("O"), board=Board.new)
+    one_player.play
+  elsif choice == 3
+    puts "Let the machines fight!"
+    computer = Game.new(player_1 = Players::Computer.new("X"), player_2 = Players::Computer.new("O"), board=Board.new)
+    computer.play
+  else
+  puts "This is not valid choice"
+  end
+end
+puts ""
+
+
+two_players = Game.new
+two_players.play
